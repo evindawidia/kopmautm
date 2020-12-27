@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Anggota_m extends CI_Model
 {
-    private $table = "admin";
+    private $table = "anggota";
     public $id_anggota = "";
     public $level_id = "";
     public $gender_id = "";
