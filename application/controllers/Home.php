@@ -4,9 +4,8 @@ class Home extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->helper('form');
         $this->load->model("Anggota_m", "anggota");
-        $this->load->model("Barang_m", "Barang");
+        $this->load->model("Barang_m", "barang");
         $this->load->model("Detail_pembelian_m", "detail_pembelian");
         $this->load->model("Fakultas_m", "fakultas");
         $this->load->model("Gender_m", "gender");
@@ -44,11 +43,49 @@ class Home extends CI_Controller
     public function ceklogin()
     {
         if (!isset($_SESSION["user"])) {
-            redirect("Home");
+            redirect("Home/login");
             return;
         }
     }
+    public function getdatalogin()
+    {
+        return $this->anggota->get_one("id_anggota = '" . $_SESSION['user'] . "'");
+    }
+    public function login()
+    {
+        if (isset($_SESSION['user'])) {
+            redirect("Home/user");
+            return;
+        }
+        $this->load->view("home/login");
+    }
+    public function dologin()
+    {
+        if (!isset($_POST['email']) || !isset($_POST['password'])) {
+            redirect("Home/login");
+        }
+        $user = $_POST['email'];
+        $password = $_POST['password'];
+        $anggota = $this->anggota->get_one("email = '$user' and password = '$password'");
+        if ($anggota) {
+            $_SESSION['user'] = $anggota->id_anggota;
+            redirect("Home/user");
+        } else {
+            $this->writemsg("Username /  Password Salah");
+            redirect("Home/login");
+            return;
+        }
+    }
+    public function logout()
+    {
+        session_destroy();
+        redirect("Home/login");
+    }
     public function index()
+    {
+        $this->load->view('home/index');
+    }
+    public function user()
     {
         $this->load->view('home/index');
     }

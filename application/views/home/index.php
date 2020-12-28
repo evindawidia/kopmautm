@@ -54,7 +54,7 @@
             <div class="intro-text">
                 <div class="intro-heading text-uppercase">Koperasi Mahasiswa</div>
                 <div class="intro-lead-in">Universitas Trunojoyo Madura</div>
-                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#">Login</a>
+                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="<?= base_url("Home/login") ?>">Login</a>
             </div>
         </div>
     </header>
