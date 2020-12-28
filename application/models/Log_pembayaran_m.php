@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Log_pembayaran_m extends CI_Model
 {
-    private $table = "pembayaran";
+    private $table = "log_pembayaran";
     public $id_pembayaran = "";
     public $stat_bayar_id = "";
     public $pengajuan_id = "";
@@ -20,7 +20,7 @@ class Log_pembayaran_m extends CI_Model
     }
     public function get_one($where)
     {
-        $data = $this->db->query("SELECT * FROM pembayaran WHERE " . $where . " limit 1")->result();
+        $data = $this->db->query("SELECT * FROM log_pembayaran WHERE " . $where . " limit 1")->result();
         if (count($data) != 0) {
             $data = $data[0];
         } else {
@@ -48,7 +48,7 @@ class Log_pembayaran_m extends CI_Model
             $orderby = "order by " . $orderby;
         }
 
-        $data = $this->db->query("select * from pembayaran $where $groupby $orderby $stringlimit")->result();
+        $data = $this->db->query("select * from log_pembayaran $where $groupby $orderby $stringlimit")->result();
         $result = [];
         if (count($data) != 0) {
             foreach ($data as $row) {
@@ -82,7 +82,7 @@ class Log_pembayaran_m extends CI_Model
 
     public function delete()
     {
-        $this->db->delete('pembayaran', array('id_pembayaran' => $this->id_pembayaran));
+        $this->db->delete('log_pembayaran', array('id_pembayaran' => $this->id_pembayaran));
         return true;
     }
 }
