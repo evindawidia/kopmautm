@@ -58,7 +58,7 @@
                                     <hr>
                                     <br>
                                     <div class="text-center">
-                                        <a class="small" href="#" style="color: #5bb666">
+                                        <a class="small" href="<?= base_url("Home/registrasi") ?>" style="color: #5bb666">
                                             <h6><b>Create an Account!</b></h6>
                                         </a>
                                     </div>

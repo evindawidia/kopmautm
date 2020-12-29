@@ -4,6 +4,7 @@ class Home extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->helper('form');
         $this->load->model("Anggota_m", "anggota");
         $this->load->model("Barang_m", "barang");
         $this->load->model("Detail_pembelian_m", "detail_pembelian");
@@ -85,8 +86,19 @@ class Home extends CI_Controller
     {
         $this->load->view('home/index');
     }
-    public function user()
+    public function registrasi()
     {
-        $this->load->view('home/index');
+        $data['Gender'] = $this->gender->get();
+        $data['Prodi'] = $this->prodi->get();
+        $this->load->view('home/registrasi', $data);
+    }
+    public function doregistrasi()
+    {
+        $newAnggota = new Anggota_m();
+        $newAnggota->update($_POST);
+        $newAnggota->level_id = 3;
+        $newAnggota->write();
+        $this->writemsg("Process Registration Success", 1);
+        redirect("Home/login");
     }
 }

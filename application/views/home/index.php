@@ -38,7 +38,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#">Register</a>
+                        <a class="nav-link js-scroll-trigger" href="<?= base_url("Home/registrasi") ?>">Register</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#about">Join us ?</a>
