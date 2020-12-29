@@ -101,4 +101,8 @@ class Home extends CI_Controller
         $this->writemsg("Process Registration Success", 1);
         redirect("Home/login");
     }
+    public function user()
+    {
+        $this->load->view('home/user');
+    }
 }
