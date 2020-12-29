@@ -55,7 +55,6 @@ class Anggota_m extends CI_Model
         if ($stringlimit != "") {
             $stringlimit = "limit " . $stringlimit;
         }
-        //set untuk where
         if ($where != "") {
             $where = "where " . $where;
         }

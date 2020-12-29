@@ -80,7 +80,7 @@ class Home extends CI_Controller
     public function logout()
     {
         session_destroy();
-        redirect("Home/login");
+        redirect("Home/");
     }
     public function index()
     {
@@ -103,6 +103,11 @@ class Home extends CI_Controller
     }
     public function user()
     {
+        if (!isset($_SESSION["user"])) {
+            redirect("Home/login");
+            return;
+        }
+        $data['UserLogin'] = $this->getdatalogin();
         $this->load->view('home/user');
     }
 }

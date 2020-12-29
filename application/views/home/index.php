@@ -93,7 +93,7 @@
                                     <h4 class="subheading">Login</h4>
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="text-muted">Login pada akun anda untuk melakukan transaksi-transaksi lainnya. Pastikan akun anda telah terdaftar menjadi member KopMa. Masukkan Username yang berisi NIM dan password anda dengan benar.</p>
+                                    <p class="text-muted">Login pada akun anda untuk melakukan transaksi-transaksi lainnya. Pastikan akun anda telah terdaftar menjadi member KopMa. Masukkan Username yang berisi email dan password anda dengan benar.</p>
                                 </div>
                             </div>
                         </li>
