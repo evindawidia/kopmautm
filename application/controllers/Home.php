@@ -70,7 +70,9 @@ class Home extends CI_Controller
         $anggota = $this->anggota->get_one("email = '$user' and password = '$password'");
         if ($anggota) {
             $_SESSION['user'] = $anggota->id_anggota;
-            redirect("Home/user");
+            if ($anggota->level_id == 3) {
+                redirect("Home/user");
+            }
         } else {
             $this->writemsg("Username /  Password Salah");
             redirect("Home/login");
@@ -108,6 +110,7 @@ class Home extends CI_Controller
             return;
         }
         $data['UserLogin'] = $this->getdatalogin();
-        $this->load->view('home/user');
+        $data['Kategori'] = $this->kategori->get();
+        $this->load->view('home/user', $data);
     }
 }

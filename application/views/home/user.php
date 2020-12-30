@@ -44,8 +44,8 @@
                         <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">
                             Products <span class="caret"></span></a>
                         <ul class="dropdown-menu bg-dark" style="width: 350px">
-                            <?php foreach ($kategori as $key) { ?>
-                                <li class="nav-link"><a href="#"><?= $key->nama_kategori ?></a></li>
+                            <?php foreach ($Kategori as $k) { ?>
+                                <li class="nav-link"><a href="#"><?= $k->nama_kategori ?></a></li>
                             <?php } ?>
                         </ul>
                     </li>
@@ -150,20 +150,22 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a class="portfolio-link" href="#">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fas fa-shopping-cart fa-3x"></i>
+                <?php foreach ($Kategori as $k) { ?>
+                    <div class="col-md-4 col-sm-6 portfolio-item">
+                        <a class="portfolio-link" href="#">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content">
+                                    <i class="fas fa-shopping-cart fa-3x"></i>
+                                </div>
                             </div>
+                            <img class="img-fluid" src="<?= base_url("public/asset/img/katpro/$k->id_kategori") ?>.jpg" alt="">
+                        </a>
+                        <div class="portfolio-caption">
+                            <h4><?= $k->nama_kategori ?></h4>
+                            <a href="" class="text-muted">Read More...</a>
                         </div>
-                        <img class="img-fluid" src="" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                        <h4></h4>
-                        <a href="" class="text-muted">Read More...</a>
                     </div>
-                </div>
+                <?php } ?>
             </div>
 
         </div>
