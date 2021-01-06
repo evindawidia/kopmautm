@@ -256,37 +256,32 @@
                                 </div>
                                 <div class="card-body">
                                     <table class="table table-striped">
-
                                         <tr>
                                             <th>
-                                                header
+                                                Nama
                                             </th>
                                             <th>
-                                                header
+                                                Tanggal Ajuan
                                             </th>
                                             <th>
-                                                header
+                                                Jumlah Pinjaman
                                             </th>
                                             <th>
-                                                header
+                                                Tenor
                                             </th>
                                         </tr>
-
-                                        <TR>
-                                            <td>
-                                                content
-                                            </td>
-                                            <td>
-                                                content
-                                            </td>
-                                            <td>
-                                                content
-                                            </td>
-                                            <td>
-                                                content
-                                            </td>
-                                        </TR>
-
+                                        <?php foreach ($Pengajuan as $p) { ?>
+                                            <tr>
+                                                <td><?php foreach ($Anggota as $a) {
+                                                        if ($p->anggota_id == $a->id_anggota) {
+                                                            echo $a->nama_anggota;
+                                                        }
+                                                    } ?></td>
+                                                <td><?= $p->tanggal_ajuan ?></td>
+                                                <td><?= $p->jumlah_pinjam ?></td>
+                                                <td><?= $p->tenor ?></td>
+                                            </tr>
+                                        <?php } ?>
                                     </table>
                                 </div>
                             </div>

@@ -7,7 +7,7 @@ class Pengajuan_m extends CI_Model
     public $id_pengajuan = "";
     public $anggota_id = "";
     public $stat_pengajuan_id = "";
-    public $jumlah_pinjaman = "";
+    public $jumlah_pinjam = "";
     public $jumlah_cicilan = "";
     public $tenor = "";
     public $tanggal_ajuan = "";
@@ -18,7 +18,7 @@ class Pengajuan_m extends CI_Model
         $pengajuan->id_pengajuan = $object->id_pengajuan;
         $pengajuan->anggota_id = $object->anggota_id;
         $pengajuan->stat_pengajuan_id = $object->stat_pengajuan_id;
-        $pengajuan->jumlah_pinjaman = $object->jumlah_pinjaman;
+        $pengajuan->jumlah_pinjam = $object->jumlah_pinjam;
         $pengajuan->jumlah_cicilan = $object->jumlah_cicilan;
         $pengajuan->tenor = $object->tenor;
         $pengajuan->tanggal_ajuan = $object->tanggal_ajuan;
@@ -35,7 +35,7 @@ class Pengajuan_m extends CI_Model
         $this->id_pengajuan = $data->id_pengajuan;
         $this->anggota_id = $data->anggota_id;
         $this->stat_pengajuan_id = $data->stat_pengajuan_id;
-        $this->jumlah_pinjaman = $data->jumlah_pinjaman;
+        $this->jumlah_pinjam = $data->jumlah_pinjam;
         $this->jumlah_cicilan = $data->jumlah_cicilan;
         $this->tenor = $data->tenor;
         $this->tanggal_ajuan = $data->tanggal_ajuan;
@@ -71,7 +71,7 @@ class Pengajuan_m extends CI_Model
         $this->id_pengajuan = isset($data['id_pengajuan']) ? $data['id_pengajuan'] : $this->id_pengajuan;
         $this->anggota_id = isset($data['anggota_id']) ? $data['anggota_id'] : $this->anggota_id;
         $this->stat_pengajuan_id = isset($data['stat_pengajuan_id']) ? $data['stat_pengajuan_id'] : $this->stat_pengajuan_id;
-        $this->jumlah_pinjaman = isset($data['jumlah_pinjaman']) ? $data['jumlah_pinjaman'] : $this->jumlah_pinjaman;
+        $this->jumlah_pinjam = isset($data['jumlah_pinjam']) ? $data['jumlah_pinjam'] : $this->jumlah_pinjam;
         $this->jumlah_cicilan = isset($data['jumlah_cicilan']) ? $data['jumlah_cicilan'] : $this->jumlah_cicilan;
         $this->tenor = isset($data['tenor']) ? $data['tenor'] : $this->tenor;
         $this->tanggal_ajuan = date("Y-m-d");

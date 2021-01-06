@@ -1,5 +1,5 @@
 <?php
-class Home extends CI_Controller
+class Admin extends CI_Controller
 {
     public function __construct()
     {
@@ -58,6 +58,9 @@ class Home extends CI_Controller
             redirect("Home/login");
             return;
         }
-        $this->load->view('admin/index');
+        $data['UserLogin'] = $this->getdatalogin();
+        $data['Pengajuan'] = $this->pengajuan->get();
+        $data['Anggota'] = $this->anggota->get();
+        $this->load->view('admin/index', $data);
     }
 }
