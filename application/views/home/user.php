@@ -50,7 +50,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#about">Join us ?</a>
+                        <a class="nav-link js-scroll-trigger" href="#about">How to ?</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#team">Team</a>
@@ -161,7 +161,7 @@
                             <img class="img-fluid" src="<?= base_url("public/asset/img/katpro/$k->id_kategori") ?>.jpg" alt="">
                         </a>
                         <div class="portfolio-caption">
-                            <h4><?= $k->nama_kategori ?></h4>
+                            <h4><?= $k->nama_kategori ?></h4><br>
                             <a href="" class="text-muted">Read More...</a>
                         </div>
                     </div>
@@ -176,8 +176,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading text-uppercase">How to join us ?</h2>
-                    <h3 class="section-subheading text-muted">Cara bergabung dengan KopMa UTM</h3>
+                    <h2 class="section-heading text-uppercase">How to make transactions ?</h2>
+                    <h3 class="section-subheading text-muted">Cara untuk transaksi</h3>
                 </div>
             </div>
             <div class="row">
@@ -185,33 +185,7 @@
                     <ul class="timeline">
                         <li>
                             <div class="timeline-image">
-                                <img class="rounded-circle img-fluid" src="#" alt="">
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4 class="subheading">Daftar Member</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">Daftarkan diri anda dengan melakukan registrasi. Pastikan untuk melengkapi data-data Anda. Pada setiap pendaftaran member akan dikenai Uang Kas sebesar Rp. 20.000,00. Calon member maksimal berada di semester 6.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="timeline-inverted">
-                            <div class="timeline-image">
-                                <img class="rounded-circle img-fluid" src="#" alt="">
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4 class="subheading">Login</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">Login pada akun anda untuk melakukan transaksi-transaksi lainnya. Pastikan akun anda telah terdaftar menjadi member KopMa. Masukkan Username yang berisi NIM dan password anda dengan benar.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="timeline-image">
-                                <img class="rounded-circle img-fluid" src="#" alt="">
+                                <img class="rounded-circle img-fluid" src="<?= base_url() ?>public/asset/img/about/transaksi.png" alt="">
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
@@ -224,7 +198,7 @@
                         </li>
                         <li class="timeline-inverted">
                             <div class="timeline-image">
-                                <img class="rounded-circle img-fluid" src="#" alt="">
+                                <img class="rounded-circle img-fluid" src="<?= base_url() ?>public/asset/img/about/pembelian.png" alt="">
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
@@ -237,7 +211,7 @@
                         </li>
                         <li>
                             <div class="timeline-image">
-                                <img class="rounded-circle img-fluid" src="#" alt="">
+                                <img class="rounded-circle img-fluid" src="<?= base_url() ?>public/asset/img/about/peminjaman.png" alt="">
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
@@ -273,7 +247,7 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="#" alt="">
+                        <img class="mx-auto rounded-circle" src="<?= base_url() ?>public/asset/img/team/1.jpg" alt="">
                         <h4>Widia Cahyaningrum</h4>
                         <p class="text-muted">Bendahara KopMa UTM</p>
                         <ul class="list-inline social-buttons">
@@ -297,7 +271,7 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="<?= base_url("asset/") ?>img/team/3.jpg" alt="">
+                        <img class="mx-auto rounded-circle" src="<?= base_url() ?>public/asset/img/team/3.jpg" alt="">
                         <h4>Evinda Widia Cahyaningrum</h4>
                         <p class="text-muted">Ketua KopMa UTM</p>
                         <ul class="list-inline social-buttons">
@@ -321,7 +295,7 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="<?= base_url("asset/") ?>img/team/2.jpg" alt="">
+                        <img class="mx-auto rounded-circle" src="<?= base_url() ?>public/asset/img/team/1.jpg" alt="">
                         <h4>Cahyaningrum Widia</h4>
                         <p class="text-muted">Sekretaris KopMa UTM</p>
                         <ul class="list-inline social-buttons">

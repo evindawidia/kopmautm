@@ -38,6 +38,7 @@ class Anggota_m extends CI_Model
         } else {
             return null;
         }
+
         $this->id_anggota = $data->id_anggota;
         $this->level_id = $data->level_id;
         $this->gender_id = $data->gender_id;
