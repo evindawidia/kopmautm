@@ -61,6 +61,17 @@ class Admin extends CI_Controller
         $data['UserLogin'] = $this->getdatalogin();
         $data['Pengajuan'] = $this->pengajuan->get();
         $data['Anggota'] = $this->anggota->get();
+        $this->load->view('admin/header', $data);
         $this->load->view('admin/index', $data);
+        $this->load->view('admin/footer', $data);
+    }
+    public function anggota()
+    {
+        $data['UserLogin'] = $this->getdatalogin();
+        $data['Anggota'] = $this->anggota->get();
+        $data['Prodi'] = $this->prodi->get();
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/anggota', $data);
+        $this->load->view('admin/footer', $data);
     }
 }
