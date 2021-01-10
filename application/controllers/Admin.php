@@ -54,10 +54,7 @@ class Admin extends CI_Controller
     }
     public function user()
     {
-        if (!isset($_SESSION["user"])) {
-            redirect("Home/login");
-            return;
-        }
+        $this->ceklogin();
         $data['UserLogin'] = $this->getdatalogin();
         $data['Pengajuan'] = $this->pengajuan->get();
         $data['Anggota'] = $this->anggota->get();
@@ -67,11 +64,46 @@ class Admin extends CI_Controller
     }
     public function anggota()
     {
+        $this->ceklogin();
         $data['UserLogin'] = $this->getdatalogin();
         $data['Anggota'] = $this->anggota->get();
         $data['Prodi'] = $this->prodi->get();
         $this->load->view('admin/header', $data);
         $this->load->view('admin/anggota', $data);
         $this->load->view('admin/footer', $data);
+    }
+    public function anggota_detail()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        if (!isset($_GET['id'])) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/anggota");
+            return;
+        }
+        $id = $_GET['id'];
+        $anggota = $this->anggota->get_one("id_anggota = '$id'");
+        $data['anggota'] = $anggota;
+        $data['Prodi'] = $this->prodi->get();
+        $data['Level'] = $this->level->get();
+        $data['Gender'] = $this->gender->get();
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/anggota-detail', $data);
+        $this->load->view('admin/footer', $data);
+    }
+    public function anggota_delete()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        if (!isset($_GET['id'])) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/anggota");
+            return;
+        }
+        $id = $_GET['id'];
+        $anggota = $this->anggota->get_one("id_anggota = '$id'");
+        $anggota->delete();
+        $this->writemsg("Delete Success", 1);
+        redirect("Admin/anggota");
     }
 }

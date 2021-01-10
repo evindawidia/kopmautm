@@ -16,7 +16,7 @@
                             <th>Nama</th>
                             <th>Tanggal Mendaftar</th>
                             <th>Prodi</th>
-                            <th style="width: 400px">Button</th>
+                            <th style="width: 300px">Button</th>
                         </tr>
                         <?php foreach ($Anggota as $a) { ?>
                             <tr>
@@ -30,15 +30,11 @@
                                     } ?>
                                 </td>
                                 <td>
-                                    <a class="btn btn-warning btn-xl text-uppercase js-scroll-trigger" href="">
+                                    <a class="btn btn-warning btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/anggota_detail?id=<?= $a->id_anggota ?>">
                                         <i class="fas fa-eye"></i>
                                         <span>View</span>
                                     </a>
-                                    <a class="btn btn-success btn-xl text-uppercase js-scroll-trigger" href="">
-                                        <i class="fas fa-plus"></i>
-                                        <span>Tambah</span>
-                                    </a>
-                                    <a class="btn btn-danger btn-xl text-uppercase js-scroll-trigger" href="">
+                                    <a class="btn btn-danger btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/anggota_delete?id=<?= $a->id_anggota ?>">
                                         <i class="fas fa-trash"></i>
                                         <span>Delete</span>
                                     </a>
