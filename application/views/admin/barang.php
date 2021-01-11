@@ -26,11 +26,11 @@
                                 <td><?= $b->stock ?>
                                 </td>
                                 <td>
-                                    <a class="btn btn-warning btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/detail_barang?id=<?= $a->id_barang ?>">
+                                    <a class="btn btn-warning btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/detail_barang?id=<?= $b->id_barang ?>">
                                         <i class="fas fa-eye"></i>
                                         <span>View</span>
                                     </a>
-                                    <a class="btn btn-danger btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/barang_delete?id=<?= $a->id_barang ?>">
+                                    <a class="btn btn-danger btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/barang_delete?id=<?= $b->id_barang ?>">
                                         <i class="fas fa-trash"></i>
                                         <span>Delete</span>
                                     </a>

@@ -109,4 +109,20 @@ class Barang_m extends CI_Model
         $this->db->delete('barang', array('id_barang' => $this->id_barang));
         return true;
     }
+    public function Supplier()
+    {
+        return $this->supplier->get_one("id_supplier = '" . $this->supplier_id . "'");
+    }
+    public function GetSupplier()
+    {
+        return $this->Supplier()->nama_supplier;
+    }
+    public function Kategori()
+    {
+        return $this->kategori->get_one("id_kategori = '" . $this->kategori_id . "'");
+    }
+    public function GetKategori()
+    {
+        return $this->Kategori()->nama_kategori;
+    }
 }

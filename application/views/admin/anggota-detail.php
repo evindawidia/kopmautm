@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <table class="table table-striped">
                         <tr>
-                            <th>Id Anggota</th>
+                            <th>ID Anggota</th>
                             <td><?= $anggota->id_anggota ?></td>
                         </tr>
                         <tr>
