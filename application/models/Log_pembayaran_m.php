@@ -7,7 +7,7 @@ class Log_pembayaran_m extends CI_Model
     public $id_pembayaran = "";
     public $stat_bayar_id = "";
     public $pengajuan_id = "";
-    public $date_created = "";
+    public $tanggal_bayar = "";
 
     public function transform($object)
     {
@@ -15,7 +15,7 @@ class Log_pembayaran_m extends CI_Model
         $pembayaran->id_pembayaran = $object->id_pembayaran;
         $pembayaran->stat_bayar_id = $object->stat_bayar_id;
         $pembayaran->pengajuan_id = $object->pengajuan_id;
-        $pembayaran->date_created = $object->date_created;
+        $pembayaran->tanggal_bayar = $object->tanggal_bayar;
         return $pembayaran;
     }
     public function get_one($where)
@@ -29,7 +29,7 @@ class Log_pembayaran_m extends CI_Model
         $this->id_pembayaran = $data->id_pembayaran;
         $this->stat_bayar_id = $data->stat_bayar_id;
         $this->pengajuan_id = $data->pengajuan_id;
-        $this->date_created = $data->date_created;
+        $this->tanggal_bayar = $data->tanggal_bayar;
         return $this;
     }
     public function get($where = "", $groupby = "", $orderby = "", $stringlimit = "")
@@ -62,7 +62,7 @@ class Log_pembayaran_m extends CI_Model
         $this->id_pembayaran = isset($data['id_pembayaran']) ? $data['id_pembayaran'] : $this->id_pembayaran;
         $this->stat_bayar_id = isset($data['stat_bayar_id']) ? $data['stat_bayar_id'] : $this->stat_bayar_id;
         $this->pengajuan_id = isset($data['pengajuan_id']) ? $data['pengajuan_id'] : $this->pengajuan_id;
-        $this->date_created = date("Y-m-d");
+        $this->tanggal_bayar = date("Y-m-d");
     }
     public function write()
     {
@@ -84,5 +84,13 @@ class Log_pembayaran_m extends CI_Model
     {
         $this->db->delete('log_pembayaran', array('id_pembayaran' => $this->id_pembayaran));
         return true;
+    }
+    public function StatusBayar()
+    {
+        return $this->status_pembayaran->get_one("id_stat_bayar = '" . $this->stat_bayar_id . "'");
+    }
+    public function GetStatusBayar()
+    {
+        return $this->StatusBayar()->status_bayar;
     }
 }

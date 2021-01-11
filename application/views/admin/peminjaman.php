@@ -31,11 +31,11 @@
                                 <td><?= $p->jumlah_cicilan ?></td>
                                 <td><?= $p->tenor ?></td>
                                 <td>
-                                    <a class="btn btn-warning btn-xl text-uppercase js-scroll-trigger" href="">
+                                    <a class="btn btn-warning btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/detail_peminjaman?id=<?= $p->id_pengajuan ?>">
                                         <i class="fas fa-eye"></i>
                                         <span>Log</span>
                                     </a>
-                                    <a class="btn btn-danger btn-xl text-uppercase js-scroll-trigger" href="">
+                                    <a class="btn btn-danger btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/peminjaman_delete?id=<?= $p->id_pengajuan ?>">
                                         <i class="fas fa-trash"></i>
                                         <span>Delete</span>
                                     </a>

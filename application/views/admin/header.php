@@ -44,7 +44,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Data Anggota -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="<?= base_url('Admin/anggota') ?>">
                     <i class="fas fa-users"></i>
@@ -52,7 +52,7 @@
                 </a>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
+            <!-- Nav Item - Data Pembelian -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="<?= base_url('Admin/pembelian') ?>">
                     <i class="fas fa-shopping-cart"></i>
@@ -64,20 +64,28 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Nav Item - Charts -->
+            <!-- Nav Item - Data Peminjaman -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('Admin/peminjaman') ?>">
                     <i class="fas fa-dollar-sign"></i>
                     <span>Data Peminjaman</span></a>
             </li>
 
-            <!-- Nav Item - Tables -->
+            <!-- Nav Item - Data Barang -->
             <li class="nav-item">
                 <a class="nav-link" href="">
                     <i class="fas fa-address-book"></i>
-                    <span>Data Barang & Supplier</span></a>
+                    <span>Data Barang</span></a>
             </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
+            <!-- Nav Item - Data Supplier -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('Admin/peminjaman') ?>">
+                    <i class="fas fa-user"></i>
+                    <span>Data Supplier</span></a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

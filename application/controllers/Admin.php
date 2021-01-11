@@ -159,4 +159,36 @@ class Admin extends CI_Controller
         $this->load->view('admin/peminjaman', $data);
         $this->load->view('admin/footer', $data);
     }
+    public function detail_peminjaman()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        if (!isset($_GET['id'])) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/peminjaman");
+            return;
+        }
+        $id = $_GET['id'];
+        $pengajuan = $this->pengajuan->get_one("id_pengajuan = '$id'");
+        $data['peminjaman'] = $pengajuan;
+        $data['Log_Bayar'] = $this->log_pembayaran->get();
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/peminjaman-detail', $data);
+        $this->load->view('admin/footer', $data);
+    }
+    public function peminjaman_delete()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        if (!isset($_GET['id'])) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/peminjaman");
+            return;
+        }
+        $id = $_GET['id'];
+        $pengajuan = $this->pengajuan->get_one("id_pengajuan = '$id'");
+        $pengajuan->delete();
+        $this->writemsg("Delete Success", 1);
+        redirect("Admin/peminjaman");
+    }
 }

@@ -9,17 +9,18 @@
         <div class="col-xl-10 col-lg-5">
             <div class="card shadow mb-4">
                 <div class="card-body">
-                    <?php foreach ($Detail_Beli as $d) {
-                        if ($d->pembelian_id == $pembelian->id_pembelian) { ?>
-                            <table class="table table-striped">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Tgl Pembelian</th>
-                                    <th>Status Pembelian</th>
-                                    <th>Barang</th>
-                                    <th>Jumlah</th>
-                                    <th>Biaya</th>
-                                </tr>
+
+                    <table class="table table-striped">
+                        <tr>
+                            <th>ID</th>
+                            <th>Tgl Pembelian</th>
+                            <th>Status Pembelian</th>
+                            <th>Barang</th>
+                            <th>Jumlah</th>
+                            <th>Biaya</th>
+                        </tr>
+                        <?php foreach ($Detail_Beli as $d) {
+                            if ($d->pembelian_id == $pembelian->id_pembelian) { ?>
                                 <tr>
                                     <td><?= $d->id_det_pembelian ?></td>
                                     <td><?= $d->date_created ?></td>
@@ -28,10 +29,10 @@
                                     <td><?= $d->jumlah_beli ?></td>
                                     <td>0</td>
                                 </tr>
-                                <!-- ============================ -->
-                            </table>
-                    <?php }
-                    } ?>
+                        <?php }
+                        } ?>
+                        <!-- ============================ -->
+                    </table>
                 </div>
             </div>
         </div>
