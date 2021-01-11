@@ -13,18 +13,18 @@ class Detail_pembelian_m extends CI_Model
 
     public function transform($object)
     {
-        $det_pembelian = new Detail_pembelian_m();
-        $det_pembelian->id_det_pembelian = $object->id_det_pembelian;
-        $det_pembelian->status_beli_id = $object->status_beli_id;
-        $det_pembelian->pembelian_id = $object->pembelian_id;
-        $det_pembelian->barang_id = $object->barang_id;
-        $det_pembelian->jumlah_beli = $object->jumlah_beli;
-        $det_pembelian->date_created = $object->date_created;
-        return $det_pembelian;
+        $detail_pembelian = new Detail_pembelian_m();
+        $detail_pembelian->id_det_pembelian = $object->id_det_pembelian;
+        $detail_pembelian->status_beli_id = $object->status_beli_id;
+        $detail_pembelian->pembelian_id = $object->pembelian_id;
+        $detail_pembelian->barang_id = $object->barang_id;
+        $detail_pembelian->jumlah_beli = $object->jumlah_beli;
+        $detail_pembelian->date_created = $object->date_created;
+        return $detail_pembelian;
     }
     public function get_one($where)
     {
-        $data = $this->db->query("SELECT * FROM det_pembelian WHERE " . $where . " limit 1")->result();
+        $data = $this->db->query("SELECT * FROM detail_pembelian WHERE " . $where . " limit 1")->result();
         if (count($data) != 0) {
             $data = $data[0];
         } else {
@@ -54,7 +54,7 @@ class Detail_pembelian_m extends CI_Model
             $orderby = "order by " . $orderby;
         }
 
-        $data = $this->db->query("select * from det_pembelian $where $groupby $orderby $stringlimit")->result();
+        $data = $this->db->query("select * from detail_pembelian $where $groupby $orderby $stringlimit")->result();
         $result = [];
         if (count($data) != 0) {
             foreach ($data as $row) {
@@ -90,7 +90,15 @@ class Detail_pembelian_m extends CI_Model
 
     public function delete()
     {
-        $this->db->delete('det_pembelian', array('id_det_pembelian' => $this->id_det_pembelian));
+        $this->db->delete('detail_pembelian', array('id_det_pembelian' => $this->id_det_pembelian));
         return true;
+    }
+    public function StatusBeli()
+    {
+        return $this->status_beli->get_one("id_status_beli = '" . $this->status_beli_id . "'");
+    }
+    public function GetStatusBeli()
+    {
+        return $this->StatusBeli()->status_beli;
     }
 }

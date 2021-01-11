@@ -3,7 +3,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0">Data Anggota Detail</h1>
+        <h1 class="h3 mb-0">Data Pembelian Detail</h1>
     </div>
     <div class="row">
         <div class="col-xl-10 col-lg-5">

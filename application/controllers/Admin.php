@@ -106,4 +106,15 @@ class Admin extends CI_Controller
         $this->writemsg("Delete Success", 1);
         redirect("Admin/anggota");
     }
+    public function pembelian()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        $data['Pembelian'] = $this->pembelian->get();
+        $data['Anggota'] = $this->anggota->get();
+        $data['Detail_Beli'] = $this->detail_pembelian->get();
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/pembelian', $data);
+        $this->load->view('admin/footer', $data);
+    }
 }
