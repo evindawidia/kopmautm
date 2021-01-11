@@ -81,4 +81,24 @@ class Pembelian_m extends CI_Model
         $this->db->delete('pembelian', array('id_pembelian' => $this->id_pembelian));
         return true;
     }
+    public function Anggota()
+    {
+        return $this->anggota->get_one("id_anggota = '" . $this->anggota_id . "'");
+    }
+    public function GetNamaAnggota()
+    {
+        return $this->Anggota()->nama_anggota;
+    }
+    public function DetailPembelian()
+    {
+        return $this->detail_pembelian->get_one("pembelian_id = '" . $this->id_pembelian . "'");
+    }
+    public function GetJumlahBeli()
+    {
+        return $this->DetailPembelian()->jumlah_beli;
+    }
+    public function GetTanggalBayar()
+    {
+        return $this->DetailPembelian()->date_created;
+    }
 }

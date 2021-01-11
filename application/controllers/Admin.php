@@ -117,4 +117,36 @@ class Admin extends CI_Controller
         $this->load->view('admin/pembelian', $data);
         $this->load->view('admin/footer', $data);
     }
+    public function detail_pembelian()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        if (!isset($_GET['id'])) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/pembelian");
+            return;
+        }
+        $id = $_GET['id'];
+        $pembelian = $this->pembelian->get_one("id_pembelian = '$id'");
+        $data['pembelian'] = $pembelian;
+        $data['Detail_Beli'] = $this->detail_pembelian->get();
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/pembelian-detail', $data);
+        $this->load->view('admin/footer', $data);
+    }
+    public function pembelian_delete()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        if (!isset($_GET['id'])) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/pembelian");
+            return;
+        }
+        $id = $_GET['id'];
+        $pembelian = $this->pembelian->get_one("id_pembelian = '$id'");
+        $pembelian->delete();
+        $this->writemsg("Delete Success", 1);
+        redirect("Admin/pembelian");
+    }
 }

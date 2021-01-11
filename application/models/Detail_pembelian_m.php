@@ -101,4 +101,12 @@ class Detail_pembelian_m extends CI_Model
     {
         return $this->StatusBeli()->status_beli;
     }
+    public function Barang()
+    {
+        return $this->barang->get_one("id_barang = '" . $this->barang_id . "'");
+    }
+    public function GetNamaBarang()
+    {
+        return $this->Barang()->nama_barang;
+    }
 }

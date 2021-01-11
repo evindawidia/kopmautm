@@ -12,33 +12,20 @@
                 <div class="card-body">
                     <table class="table table-striped">
                         <tr>
-                            <th>ID Pembelian</th>
+                            <th>ID</th>
                             <th>Nama</th>
-                            <th>Tanggal Beli</th>
-                            <th>Status Beli</th>
                             <th style="width: 300px">Button</th>
                         </tr>
                         <?php foreach ($Pembelian as $p) { ?>
                             <tr>
                                 <td><?= $p->id_pembelian ?></td>
-                                <td><?php foreach ($Anggota as $a) {
-                                        if ($a->id_anggota == $p->anggota_id) {
-                                            echo $a->nama_anggota;
-                                        }
-                                    } ?></td>
-                                <td><?= $p->tanggal_beli ?></td>
-                                <td><?php foreach ($Detail_Beli as $b) {
-                                        if ($b->pembelian_id == $p->id_pembelian) {
-                                            echo $b->GetStatusBeli();
-                                        }
-                                    } ?>
-                                </td>
+                                <td><?= $p->GetNamaAnggota() ?></td>
                                 <td>
-                                    <a class="btn btn-warning btn-xl text-uppercase js-scroll-trigger" href="">
+                                    <a class="btn btn-warning btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/detail_pembelian?id=<?= $p->id_pembelian ?>">
                                         <i class="fas fa-eye"></i>
                                         <span>View</span>
                                     </a>
-                                    <a class="btn btn-danger btn-xl text-uppercase js-scroll-trigger" href="">
+                                    <a class="btn btn-danger btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/pembelian_delete?id=<?= $p->id_pembelian ?>">
                                         <i class="fas fa-trash"></i>
                                         <span>Delete</span>
                                     </a>
