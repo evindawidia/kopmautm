@@ -64,11 +64,9 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-
-
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="<?= base_url('Admin/peminjaman') ?>">
                     <i class="fas fa-dollar-sign"></i>
                     <span>Data Peminjaman</span></a>
             </li>

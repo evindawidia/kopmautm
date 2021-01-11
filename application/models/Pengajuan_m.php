@@ -97,4 +97,20 @@ class Pengajuan_m extends CI_Model
         $this->db->delete('pengajuan', array('id_pengajuan' => $this->id_pengajuan));
         return true;
     }
+    public function Anggota()
+    {
+        return $this->anggota->get_one("id_anggota = '" . $this->anggota_id . "'");
+    }
+    public function GetNamaAnggota()
+    {
+        return $this->Anggota()->nama_anggota;
+    }
+    public function StatusAju()
+    {
+        return $this->status_pengajuan->get_one("id_stat_pengajuan = '" . $this->stat_pengajuan_id . "'");
+    }
+    public function GetStatusAju()
+    {
+        return $this->StatusAju()->status_pengajuan;
+    }
 }

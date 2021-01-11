@@ -149,4 +149,14 @@ class Admin extends CI_Controller
         $this->writemsg("Delete Success", 1);
         redirect("Admin/pembelian");
     }
+    public function peminjaman()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        $data['Peminjaman'] = $this->pengajuan->get();
+        $data['Anggota'] = $this->anggota->get();
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/peminjaman', $data);
+        $this->load->view('admin/footer', $data);
+    }
 }
