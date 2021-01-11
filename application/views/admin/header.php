@@ -73,7 +73,7 @@
 
             <!-- Nav Item - Data Barang -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="<?= base_url('Admin/barang') ?>">
                     <i class="fas fa-address-book"></i>
                     <span>Data Barang</span></a>
             </li>

@@ -18,23 +18,19 @@
                             <th>Stock</th>
                             <th style="width: 300px">Button</th>
                         </tr>
-                        <?php foreach ($Anggota as $a) { ?>
+                        <?php foreach ($Barang as $b) { ?>
                             <tr>
-                                <td><?= $a->id_anggota ?></td>
-                                <td><?= $a->nama_anggota ?></td>
-                                <td><?= $a->date_created ?></td>
-                                <td><?php foreach ($Prodi as $p) {
-                                        if ($p->id_prodi == $a->prodi_id) {
-                                            echo $p->nama_prodi;
-                                        }
-                                    } ?>
+                                <td><?= $b->id_barang ?></td>
+                                <td><?= $b->nama_barang ?></td>
+                                <td><?= $b->date_created ?></td>
+                                <td><?= $b->stock ?>
                                 </td>
                                 <td>
-                                    <a class="btn btn-warning btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/anggota_detail?id=<?= $a->id_anggota ?>">
+                                    <a class="btn btn-warning btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/detail_barang?id=<?= $a->id_barang ?>">
                                         <i class="fas fa-eye"></i>
                                         <span>View</span>
                                     </a>
-                                    <a class="btn btn-danger btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/anggota_delete?id=<?= $a->id_anggota ?>">
+                                    <a class="btn btn-danger btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/barang_delete?id=<?= $a->id_barang ?>">
                                         <i class="fas fa-trash"></i>
                                         <span>Delete</span>
                                     </a>

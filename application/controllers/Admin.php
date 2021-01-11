@@ -154,7 +154,6 @@ class Admin extends CI_Controller
         $this->ceklogin();
         $data['UserLogin'] = $this->getdatalogin();
         $data['Peminjaman'] = $this->pengajuan->get();
-        $data['Anggota'] = $this->anggota->get();
         $this->load->view('admin/header', $data);
         $this->load->view('admin/peminjaman', $data);
         $this->load->view('admin/footer', $data);
@@ -190,5 +189,45 @@ class Admin extends CI_Controller
         $pengajuan->delete();
         $this->writemsg("Delete Success", 1);
         redirect("Admin/peminjaman");
+    }
+    public function barang()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        $data['Barang'] = $this->barang->get();
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/barang', $data);
+        $this->load->view('admin/footer', $data);
+    }
+    public function detail_barang()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        if (!isset($_GET['id'])) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/barang");
+            return;
+        }
+        $id = $_GET['id'];
+        $barang = $this->barang->get_one("id_barang = '$id'");
+        $data['barang'] = $barang;
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/barang-detail', $data);
+        $this->load->view('admin/footer', $data);
+    }
+    public function barang_delete()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        if (!isset($_GET['id'])) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/barang");
+            return;
+        }
+        $id = $_GET['id'];
+        $barang = $this->barang->get_one("id_barang = '$id'");
+        $barang->delete();
+        $this->writemsg("Delete Success", 1);
+        redirect("Admin/barang");
     }
 }
