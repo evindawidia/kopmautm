@@ -82,7 +82,7 @@
 
             <!-- Nav Item - Data Supplier -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('Admin/peminjaman') ?>">
+                <a class="nav-link" href="<?= base_url('Admin/supplier') ?>">
                     <i class="fas fa-user"></i>
                     <span>Data Supplier</span></a>
             </li>

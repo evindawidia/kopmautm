@@ -230,4 +230,28 @@ class Admin extends CI_Controller
         $this->writemsg("Delete Success", 1);
         redirect("Admin/barang");
     }
+    public function supplier()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        $data['Supplier'] = $this->supplier->get();
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/supplier', $data);
+        $this->load->view('admin/footer', $data);
+    }
+    public function supplier_delete()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        if (!isset($_GET['id'])) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/supplier");
+            return;
+        }
+        $id = $_GET['id'];
+        $supplier = $this->supplier->get_one("id_supplier = '$id'");
+        $supplier->delete();
+        $this->writemsg("Delete Success", 1);
+        redirect("Admin/supplier");
+    }
 }
