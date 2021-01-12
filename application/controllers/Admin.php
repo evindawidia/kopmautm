@@ -340,6 +340,26 @@ class Admin extends CI_Controller
         $this->load->view('admin/barang', $data);
         $this->load->view('admin/footer', $data);
     }
+    public function barang_add()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        $data['Supplier'] = $this->supplier->get();
+        $data['Kategori'] = $this->kategori->get();
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/barang-form', $data);
+        $this->load->view('admin/footer', $data);
+    }
+
+    public function doaddbarang()
+    {
+        $this->ceklogin();
+        $newbarang = new barang_m();
+        $newbarang->update($_POST);
+        $newbarang->write();
+        $this->writemsg("Process Success", 1);
+        redirect("Admin/barang");
+    }
     public function detail_barang()
     {
         $this->ceklogin();

@@ -10,6 +10,11 @@
         <div class="col-xl-12 col-lg-5">
             <div class="card shadow mb-4">
                 <div class="card-body">
+                    <a class="btn btn-info btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/barang_add">
+                        <i class="fas fa-plus"></i>
+                        <span>Tambah</span>
+                    </a>
+                    <br><br>
                     <table class="table table-striped">
                         <tr>
                             <th>ID</th>
