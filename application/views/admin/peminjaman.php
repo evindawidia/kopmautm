@@ -35,6 +35,10 @@
                                         <i class="fas fa-eye"></i>
                                         <span>Log</span>
                                     </a>
+                                    <a class="btn btn-success btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/peminjaman_edit?id=<?= $p->id_pengajuan ?>">
+                                        <i class="fas fa-eye"></i>
+                                        <span>Edit</span>
+                                    </a>
                                     <a class="btn btn-danger btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/peminjaman_delete?id=<?= $p->id_pengajuan ?>">
                                         <i class="fas fa-trash"></i>
                                         <span>Delete</span>

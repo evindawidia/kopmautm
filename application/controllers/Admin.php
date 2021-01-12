@@ -256,6 +256,45 @@ class Admin extends CI_Controller
         $this->load->view('admin/peminjaman-detail', $data);
         $this->load->view('admin/footer', $data);
     }
+    public function peminjaman_edit()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        if (!isset($_GET['id'])) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/peminjaman");
+            return;
+        }
+        $id = $_GET['id'];
+        $pengajuan = $this->pengajuan->get_one("id_pengajuan = '$id'");
+        $data['Pengajuan'] = $pengajuan;
+        $data['Anggota'] = $this->anggota->get();
+        $data['StatusAju'] = $this->status_pengajuan->get();
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/peminjaman-edit', $data);
+        $this->load->view('admin/footer', $data);
+    }
+    public function doeditpeminjaman()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        if (!isset($_GET['id'])) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/peminjaman");
+            return;
+        }
+        $id = $_GET['id'];
+        $pengajuan = $this->pengajuan->get_one("id_pengajuan = '$id'");
+        if (!$pengajuan) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/peminjaman");
+            return;
+        }
+        $pengajuan->update($_POST);
+        $pengajuan->write();
+        $this->writemsg("Edit Success", 1);
+        redirect("Admin/peminjaman_edit?id=$id");
+    }
     public function peminjaman_delete()
     {
         $this->ceklogin();
