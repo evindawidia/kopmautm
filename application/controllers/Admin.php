@@ -175,6 +175,46 @@ class Admin extends CI_Controller
         $this->load->view('admin/pembelian-detail', $data);
         $this->load->view('admin/footer', $data);
     }
+    public function pembelian_edit()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        if (!isset($_GET['id'])) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/detail_pembelian");
+            return;
+        }
+        $id = $_GET['id'];
+        $detail_pembelian = $this->detail_pembelian->get_one("id_det_pembelian = '$id'");
+        $data['DetailPembelian'] = $detail_pembelian;
+        $data['StatusBeli'] = $this->status_beli->get();
+        $data['Barang'] = $this->barang->get();
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/pembelian-edit', $data);
+        $this->load->view('admin/footer', $data);
+    }
+
+    public function doeditpembelian()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        if (!isset($_GET['id'])) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/detail_pembelian");
+            return;
+        }
+        $id = $_GET['id'];
+        $detail_pembelian = $this->detail_pembelian->get_one("id_det_pembelian = '$id'");
+        if (!$detail_pembelian) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/detail_pembelian");
+            return;
+        }
+        $detail_pembelian->update($_POST);
+        $detail_pembelian->write();
+        $this->writemsg("Edit Success", 1);
+        redirect("Admin/pembelian_edit?id=$id");
+    }
     public function pembelian_delete()
     {
         $this->ceklogin();

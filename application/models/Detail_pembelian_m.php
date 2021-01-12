@@ -9,7 +9,7 @@ class Detail_pembelian_m extends CI_Model
     public $pembelian_id = "";
     public $barang_id = "";
     public $jumlah_beli = "";
-    public $stock = "";
+    public $date_created = "";
 
     public function transform($object)
     {

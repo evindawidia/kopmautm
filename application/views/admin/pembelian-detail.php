@@ -6,7 +6,7 @@
         <h1 class="h3 mb-0">Data Pembelian Detail</h1>
     </div>
     <div class="row">
-        <div class="col-xl-10 col-lg-5">
+        <div class="col-xl-12 col-lg-2">
             <div class="card shadow mb-4">
                 <div class="card-body">
 
@@ -17,7 +17,7 @@
                             <th>Status Pembelian</th>
                             <th>Barang</th>
                             <th>Jumlah</th>
-                            <th>Biaya</th>
+                            <th style="width: 200px">Button</th>
                         </tr>
                         <?php foreach ($Detail_Beli as $d) {
                             if ($d->pembelian_id == $pembelian->id_pembelian) { ?>
@@ -27,7 +27,11 @@
                                     <td><?= $d->GetStatusBeli() ?></td>
                                     <td><?= $d->GetNamaBarang() ?></td>
                                     <td><?= $d->jumlah_beli ?></td>
-                                    <td>0</td>
+                                    <td><a class="btn btn-success btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/pembelian_edit?id=<?= $d->id_det_pembelian ?>">
+                                            <i class="fas fa-eye"></i>
+                                            <span>Edit</span>
+                                        </a>
+                                    </td>
                                 </tr>
                         <?php }
                         } ?>
