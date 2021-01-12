@@ -335,6 +335,45 @@ class Admin extends CI_Controller
         $this->load->view('admin/barang-detail', $data);
         $this->load->view('admin/footer', $data);
     }
+    public function barang_edit()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        if (!isset($_GET['id'])) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/barang");
+            return;
+        }
+        $id = $_GET['id'];
+        $barang = $this->barang->get_one("id_barang = '$id'");
+        $data['barang'] = $barang;
+        $data['Supplier'] = $this->supplier->get();
+        $data['Kategori'] = $this->kategori->get();
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/barang-edit', $data);
+        $this->load->view('admin/footer', $data);
+    }
+    public function doeditbarang()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        if (!isset($_GET['id'])) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/barang");
+            return;
+        }
+        $id = $_GET['id'];
+        $barang = $this->barang->get_one("id_barang = '$id'");
+        if (!$barang) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/barang");
+            return;
+        }
+        $barang->update($_POST);
+        $barang->write();
+        $this->writemsg("Edit Success", 1);
+        redirect("Admin/barang_edit?id=$id");
+    }
     public function barang_delete()
     {
         $this->ceklogin();
@@ -358,6 +397,45 @@ class Admin extends CI_Controller
         $this->load->view('admin/header', $data);
         $this->load->view('admin/supplier', $data);
         $this->load->view('admin/footer', $data);
+    }
+    public function barang_edit()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        if (!isset($_GET['id'])) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/barang");
+            return;
+        }
+        $id = $_GET['id'];
+        $barang = $this->barang->get_one("id_barang = '$id'");
+        $data['barang'] = $barang;
+        $data['Supplier'] = $this->supplier->get();
+        $data['Kategori'] = $this->kategori->get();
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/barang-edit', $data);
+        $this->load->view('admin/footer', $data);
+    }
+    public function doeditbarang()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        if (!isset($_GET['id'])) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/barang");
+            return;
+        }
+        $id = $_GET['id'];
+        $barang = $this->barang->get_one("id_barang = '$id'");
+        if (!$barang) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/barang");
+            return;
+        }
+        $barang->update($_POST);
+        $barang->write();
+        $this->writemsg("Edit Success", 1);
+        redirect("Admin/barang_edit?id=$id");
     }
     public function supplier_delete()
     {

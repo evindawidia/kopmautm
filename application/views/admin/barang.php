@@ -16,7 +16,7 @@
                             <th>Nama</th>
                             <th>Tanggal Input</th>
                             <th>Stock</th>
-                            <th style="width: 300px">Button</th>
+                            <th style="width: 350px">Button</th>
                         </tr>
                         <?php foreach ($Barang as $b) { ?>
                             <tr>
@@ -29,6 +29,10 @@
                                     <a class="btn btn-warning btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/detail_barang?id=<?= $b->id_barang ?>">
                                         <i class="fas fa-eye"></i>
                                         <span>View</span>
+                                    </a>
+                                    <a class="btn btn-success btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/barang_edit?id=<?= $b->id_barang ?>">
+                                        <i class="fas fa-eye"></i>
+                                        <span>Edit</span>
                                     </a>
                                     <a class="btn btn-danger btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/barang_delete?id=<?= $b->id_barang ?>">
                                         <i class="fas fa-trash"></i>
