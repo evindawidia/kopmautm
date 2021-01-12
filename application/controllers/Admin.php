@@ -91,6 +91,47 @@ class Admin extends CI_Controller
         $this->load->view('admin/anggota-detail', $data);
         $this->load->view('admin/footer', $data);
     }
+    public function anggota_edit()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        if (!isset($_GET['id'])) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/anggota");
+            return;
+        }
+        $id = $_GET['id'];
+        $anggota = $this->anggota->get_one("id_anggota = '$id'");
+        $data['anggota'] = $anggota;
+        $data['Gender'] = $this->gender->get();
+        $data['Prodi'] = $this->prodi->get();
+        $data['Level'] = $this->level->get();
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/anggota-edit', $data);
+        $this->load->view('admin/footer', $data);
+    }
+
+    public function doeditanggota()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        if (!isset($_GET['id'])) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/anggota");
+            return;
+        }
+        $id = $_GET['id'];
+        $anggota = $this->anggota->get_one("id_anggota = '$id'");
+        if (!$anggota) {
+            $this->writemsg("Data not found !!", 2);
+            redirect("Admin/anggota");
+            return;
+        }
+        $anggota->update($_POST);
+        $anggota->write();
+        $this->writemsg("Edit Success", 1);
+        redirect("Admin/anggota_edit?id=$id");
+    }
     public function anggota_delete()
     {
         $this->ceklogin();
