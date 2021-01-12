@@ -15,6 +15,7 @@
                         <span>Tambah</span>
                     </a>
                     <br><br>
+                    <?= $this->session->flashdata('msg') ?>
                     <table class="table table-striped">
                         <tr>
                             <th>ID</th>

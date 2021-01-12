@@ -9,21 +9,20 @@
         <div class="col-xl-10 col-lg-5">
             <div class="card shadow mb-4">
                 <div class="card-body">
+                    <?= $this->session->flashdata('msg') ?>
                     <table class="table table-striped">
                         <tr>
                             <th>ID Bayar</th>
                             <th>Tgl Pembayaran</th>
                             <th>Status Pembayaran</th>
                         </tr>
-                        <?php foreach ($Log_Bayar as $l) {
-                            if ($l->pengajuan_id == $peminjaman->id_pengajuan) { ?>
-                                <tr>
-                                    <td><?= $l->id_pembayaran ?></td>
-                                    <td><?= $l->tanggal_bayar ?></td>
-                                    <td><?= $l->GetStatusBayar() ?></td>
-                                </tr>
-                        <?php }
-                        } ?>
+                        <?php foreach ($Log_Bayar as $l) { ?>
+                            <tr>
+                                <td><?= $l->id_pembayaran ?></td>
+                                <td><?= $l->tanggal_bayar ?></td>
+                                <td><?= $l->GetStatusBayar() ?></td>
+                            </tr>
+                        <?php } ?>
                         <!-- ============================ -->
                     </table>
                 </div>

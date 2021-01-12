@@ -52,6 +52,20 @@ class Admin extends CI_Controller
     {
         return $this->anggota->get_one("id_anggota = '" . $_SESSION['user'] . "'");
     }
+    public function uploadimage($formname)
+    {
+        $config['upload_path'] = './public/upload';
+        $config['allowed_types'] = 'gif|jpg|jpeg|png';
+        $config['max_size']  = '1024';
+
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload($formname)) {
+            return "/public/upload/" . $this->upload->data("file_name");
+        } else {
+            $this->writemsg($this->upload->display_errors());
+            return null;
+        }
+    }
     public function user()
     {
         $this->ceklogin();
@@ -151,7 +165,7 @@ class Admin extends CI_Controller
         $anggota->update($_POST);
         $anggota->write();
         $this->writemsg("Edit Success", 1);
-        redirect("Admin/anggota_edit?id=$id");
+        redirect("Admin/anggota_detail?id=$id");
     }
     public function anggota_delete()
     {
@@ -191,7 +205,7 @@ class Admin extends CI_Controller
         $id = $_GET['id'];
         $pembelian = $this->pembelian->get_one("id_pembelian = '$id'");
         $data['pembelian'] = $pembelian;
-        $data['Detail_Beli'] = $this->detail_pembelian->get();
+        $data['Detail_Beli'] = $this->detail_pembelian->get("pembelian_id = '" . $pembelian->id_pembelian . "'");
         $this->load->view('admin/header', $data);
         $this->load->view('admin/pembelian-detail', $data);
         $this->load->view('admin/footer', $data);
@@ -234,7 +248,7 @@ class Admin extends CI_Controller
         $detail_pembelian->update($_POST);
         $detail_pembelian->write();
         $this->writemsg("Edit Success", 1);
-        redirect("Admin/pembelian_edit?id=$id");
+        redirect("Admin/detail_pembelian?id=$id");
     }
     public function pembelian_delete()
     {
@@ -272,7 +286,7 @@ class Admin extends CI_Controller
         $id = $_GET['id'];
         $pengajuan = $this->pengajuan->get_one("id_pengajuan = '$id'");
         $data['peminjaman'] = $pengajuan;
-        $data['Log_Bayar'] = $this->log_pembayaran->get();
+        $data['Log_Bayar'] = $this->log_pembayaran->get("pengajuan_id = '" . $pengajuan->id_pengajuan . "'");
         $this->load->view('admin/header', $data);
         $this->load->view('admin/peminjaman-detail', $data);
         $this->load->view('admin/footer', $data);
@@ -314,7 +328,7 @@ class Admin extends CI_Controller
         $pengajuan->update($_POST);
         $pengajuan->write();
         $this->writemsg("Edit Success", 1);
-        redirect("Admin/peminjaman_edit?id=$id");
+        redirect("Admin/detail_peminjaman?id=$id");
     }
     public function peminjaman_delete()
     {
@@ -335,7 +349,7 @@ class Admin extends CI_Controller
     {
         $this->ceklogin();
         $data['UserLogin'] = $this->getdatalogin();
-        $data['Barang'] = $this->barang->get();
+        $data['Barang'] = $this->barang->get("", "", "id_barang Desc");
         $this->load->view('admin/header', $data);
         $this->load->view('admin/barang', $data);
         $this->load->view('admin/footer', $data);
@@ -350,12 +364,21 @@ class Admin extends CI_Controller
         $this->load->view('admin/barang-form', $data);
         $this->load->view('admin/footer', $data);
     }
-
     public function doaddbarang()
     {
         $this->ceklogin();
         $newbarang = new barang_m();
         $newbarang->update($_POST);
+        if (isset($_FILES['image'])) {
+            if (!empty($_FILES['image']['size'])) {
+                $upload = $this->uploadimage("image");
+                if ($upload == null) {
+                    redirect("Admin/barang");
+                } else {
+                    $newbarang->image = base_url() . $upload;
+                }
+            }
+        }
         $newbarang->write();
         $this->writemsg("Process Success", 1);
         redirect("Admin/barang");
@@ -390,6 +413,7 @@ class Admin extends CI_Controller
         $data['barang'] = $barang;
         $data['Supplier'] = $this->supplier->get();
         $data['Kategori'] = $this->kategori->get();
+        $data['id'] = $id;
         $this->load->view('admin/header', $data);
         $this->load->view('admin/barang-edit', $data);
         $this->load->view('admin/footer', $data);
@@ -404,6 +428,7 @@ class Admin extends CI_Controller
             return;
         }
         $id = $_GET['id'];
+        $data['id'] = $id;
         $barang = $this->barang->get_one("id_barang = '$id'");
         if (!$barang) {
             $this->writemsg("Data not found !!", 2);
@@ -411,9 +436,19 @@ class Admin extends CI_Controller
             return;
         }
         $barang->update($_POST);
+        if (isset($_FILES['image'])) {
+            if (!empty($_FILES['image']['size'])) {
+                $upload = $this->uploadimage("image");
+                if ($upload == null) {
+                    redirect("Admin/barang_edit?id=$id");
+                } else {
+                    $barang->image = base_url() . $upload;
+                }
+            }
+        }
         $barang->write();
         $this->writemsg("Edit Success", 1);
-        redirect("Admin/barang_edit?id=$id");
+        redirect("Admin/detail_barang?id=$id");
     }
     public function barang_delete()
     {
@@ -438,6 +473,23 @@ class Admin extends CI_Controller
         $this->load->view('admin/header', $data);
         $this->load->view('admin/supplier', $data);
         $this->load->view('admin/footer', $data);
+    }
+    public function supplier_add()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/supplier-form', $data);
+        $this->load->view('admin/footer', $data);
+    }
+    public function doaddsupplier()
+    {
+        $this->ceklogin();
+        $newsupplier = new supplier_m();
+        $newsupplier->update($_POST);
+        $newsupplier->write();
+        $this->writemsg("Process Success", 1);
+        redirect("Admin/supplier");
     }
     public function supplier_edit()
     {
@@ -474,7 +526,7 @@ class Admin extends CI_Controller
         $supplier->update($_POST);
         $supplier->write();
         $this->writemsg("Edit Success", 1);
-        redirect("Admin/supplier_edit?id=$id");
+        redirect("Admin/supplier?id=$id");
     }
     public function supplier_delete()
     {

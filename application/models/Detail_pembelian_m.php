@@ -109,4 +109,8 @@ class Detail_pembelian_m extends CI_Model
     {
         return $this->Barang()->nama_barang;
     }
+    public function GetTotal()
+    {
+        return $this->jumlah_beli * $this->Barang()->harga_jual;
+    }
 }

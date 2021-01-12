@@ -10,6 +10,7 @@
         <div class="col-xl-12 col-lg-5">
             <div class="card shadow mb-4">
                 <div class="card-body">
+                    <?= $this->session->flashdata('msg') ?>
                     <table class="table table-striped">
                         <tr>
                             <th>ID</th>

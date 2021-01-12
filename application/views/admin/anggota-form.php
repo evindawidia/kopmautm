@@ -64,7 +64,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-2 mb-3 mb-sm-0"><label style="margin-top: auto; margin-bottom: auto">Tanggal Daftar</label></div>
                                 <div class="col-sm-10 mb-3 mb-sm-0">
-                                    <input name="date_created" type="text" class="form-control form-control-user" placeholder="Y-M-D" required>
+                                    <input name="date_created" type="date" class="form-control form-control-user" placeholder="Y-M-D" required>
                                 </div>
                             </div>
                             <div class="form-group row">

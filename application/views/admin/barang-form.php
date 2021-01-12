@@ -52,7 +52,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-2 mb-3 mb-sm-0"><label style="margin-top: auto; margin-bottom: auto">Image</label></div>
                                 <div class="col-sm-10 mb-3 mb-sm-0">
-                                    <input type="text" class="form-control form-control-user" placeholder="Image" name="image" required>
+                                    <input type="file" class="form-control form-control-user" name="image" required>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -70,7 +70,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-2 mb-3 mb-sm-0"><label style="margin-top: auto; margin-bottom: auto">Date Created</label></div>
                                 <div class="col-sm-10 mb-3 mb-sm-0">
-                                    <input type="text" class="form-control form-control-user" placeholder="Y-M-D" name="date_created" required>
+                                    <input type="date" class="form-control form-control-user" placeholder="Y-M-D" name="date_created" required>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-success btn-user btn-block">

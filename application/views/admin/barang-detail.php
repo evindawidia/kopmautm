@@ -9,10 +9,11 @@
         <div class="col-xl-10 col-lg-5">
             <div class="card shadow mb-4">
                 <div class="card-body">
+                    <?= $this->session->flashdata('msg') ?>
                     <table class="table table-striped">
                         <tr>
                             <th>Image</th>
-                            <td></td>
+                            <td><img src="<?= $barang->getImage() ?>" class="img-fluid" style="width:100px"></td>
                         </tr>
                         <tr>
                             <th>ID barang</th>

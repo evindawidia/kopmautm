@@ -4,6 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Barang_m extends CI_Model
 {
     private $table = "barang";
+    private $defaultimg = "https://www.stma.org/wp-content/uploads/2017/10/no-image-icon.png";
     public $id_barang = "";
     public $supplier_id = "";
     public $kategori_id = "";
@@ -108,6 +109,14 @@ class Barang_m extends CI_Model
     {
         $this->db->delete('barang', array('id_barang' => $this->id_barang));
         return true;
+    }
+    public function getImage()
+    {
+        if ($this->image != "") {
+            return $this->image;
+        } else {
+            return $this->defaultimg;
+        }
     }
     public function Supplier()
     {
