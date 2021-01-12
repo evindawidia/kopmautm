@@ -72,6 +72,27 @@ class Admin extends CI_Controller
         $this->load->view('admin/anggota', $data);
         $this->load->view('admin/footer', $data);
     }
+    public function anggota_add()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        $data['Level'] = $this->level->get();
+        $data['Prodi'] = $this->prodi->get();
+        $data['Gender'] = $this->gender->get();
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/anggota-form', $data);
+        $this->load->view('admin/footer', $data);
+    }
+
+    public function doaddanggota()
+    {
+        $this->ceklogin();
+        $newanggota = new anggota_m();
+        $newanggota->update($_POST);
+        $newanggota->write();
+        $this->writemsg("Process Success", 1);
+        redirect("Admin/anggota");
+    }
     public function anggota_detail()
     {
         $this->ceklogin();
@@ -398,44 +419,42 @@ class Admin extends CI_Controller
         $this->load->view('admin/supplier', $data);
         $this->load->view('admin/footer', $data);
     }
-    public function barang_edit()
+    public function supplier_edit()
     {
         $this->ceklogin();
         $data['UserLogin'] = $this->getdatalogin();
         if (!isset($_GET['id'])) {
             $this->writemsg("Data not found !!", 2);
-            redirect("Admin/barang");
+            redirect("Admin/supplier");
             return;
         }
         $id = $_GET['id'];
-        $barang = $this->barang->get_one("id_barang = '$id'");
-        $data['barang'] = $barang;
-        $data['Supplier'] = $this->supplier->get();
-        $data['Kategori'] = $this->kategori->get();
+        $supplier = $this->supplier->get_one("id_supplier = '$id'");
+        $data['supplier'] = $supplier;
         $this->load->view('admin/header', $data);
-        $this->load->view('admin/barang-edit', $data);
+        $this->load->view('admin/supplier-edit', $data);
         $this->load->view('admin/footer', $data);
     }
-    public function doeditbarang()
+    public function doeditsupplier()
     {
         $this->ceklogin();
         $data['UserLogin'] = $this->getdatalogin();
         if (!isset($_GET['id'])) {
             $this->writemsg("Data not found !!", 2);
-            redirect("Admin/barang");
+            redirect("Admin/supplier");
             return;
         }
         $id = $_GET['id'];
-        $barang = $this->barang->get_one("id_barang = '$id'");
-        if (!$barang) {
+        $supplier = $this->supplier->get_one("id_supplier = '$id'");
+        if (!$supplier) {
             $this->writemsg("Data not found !!", 2);
-            redirect("Admin/barang");
+            redirect("Admin/supplier");
             return;
         }
-        $barang->update($_POST);
-        $barang->write();
+        $supplier->update($_POST);
+        $supplier->write();
         $this->writemsg("Edit Success", 1);
-        redirect("Admin/barang_edit?id=$id");
+        redirect("Admin/supplier_edit?id=$id");
     }
     public function supplier_delete()
     {

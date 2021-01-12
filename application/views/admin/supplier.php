@@ -17,7 +17,7 @@
                             <th>Alamat</th>
                             <th>No Telp</th>
                             <th>Tanggal Buat</th>
-                            <th style="width: 200px">Button</th>
+                            <th style="width: 250px">Button</th>
                         </tr>
                         <?php foreach ($Supplier as $s) { ?>
                             <tr>
@@ -28,6 +28,10 @@
                                 <td><?= $s->date_created ?></td>
                                 </td>
                                 <td>
+                                    <a class="btn btn-success btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/supplier_edit?id=<?= $s->id_supplier ?>">
+                                        <i class="fas fa-eye"></i>
+                                        <span>Edit</span>
+                                    </a>
                                     <a class="btn btn-danger btn-xl text-uppercase js-scroll-trigger" href="<?= base_url() ?>Admin/supplier_delete?id=<?= $s->id_supplier ?>">
                                         <i class="fas fa-trash"></i>
                                         <span>Delete</span>
