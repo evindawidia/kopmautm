@@ -108,4 +108,8 @@ class Anggota_m extends CI_Model
         $this->db->delete('anggota', array('id_anggota' => $this->id_anggota));
         return true;
     }
+    public function GetPengajuan()
+    {
+        return $this->pengajuan->get("anggota_id = '" . $this->id_anggota . "'");
+    }
 }

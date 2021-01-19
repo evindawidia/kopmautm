@@ -117,7 +117,7 @@
             </div>
             <div class="row text-center">
                 <div class="col-md-6">
-                    <a href="#" class="text text-dark">
+                    <a href="<?= base_url() ?>Home/produk" class="text text-dark">
                         <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
@@ -127,7 +127,7 @@
                     <p class="text-muted">KopMa menyediakan berbagai macam kebutuhan mahasiswa seperti ATK, tas dan lain sebagainya dengan harga yang cukup terjangkau serta kualitas yang baik. Anda akan merasa nyaman berbelanja di KopMa UTM.</p>
                 </div>
                 <div class="col-md-6">
-                    <a href="#" class="text text-dark">
+                    <a href="<?= base_url() ?>Home/peminjaman" class="text text-dark">
                         <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-money-check-alt fa-stack-1x fa-inverse"></i>

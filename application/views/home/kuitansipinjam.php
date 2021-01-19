@@ -16,7 +16,7 @@
         </div>
         <div class="col-md-8 mt-5">
             <div class="col-md-12">
-                <h3>Kuitansi Pembayaran</h3>
+                <h3>Kuitansi Peminjaman</h3>
                 <hr>
                 <small>Dicetak pada : <?= date("d/M/Y") ?></small>
             </div>
@@ -24,45 +24,30 @@
                 <thead>
                     <tr>
                         <th>
-                            Nama Barang
+                            Nama Anggota
                         </th>
                         <th>
-                            Harga
+                            Jumlah Pinjaman
                         </th>
                         <th>
-                            Jumlah Item
+                            Jumlah Cicilan
                         </th>
                         <th>
-                            Total Harus dibayar
+                            Tenor
                         </th>
                     </tr>
-
-                    <?php
-                    $bayar = 0;
-                    foreach ($Pembelian->DetailPembelian() as $dp) { ?>
-                        <tr>
-                            <td>
-                                <?= $dp->GetNamaBarang() ?>
-                            </td>
-                            <td>
-                                <?= $dp->GetHargaJual() ?>
-                            </td>
-                            <td>
-                                <?= $dp->jumlah_beli ?>
-                            </td>
-                            <td>
-                                Rp. <?= $dp->GetTotal() ?>
-                            </td>
-                        </tr>
-                    <?php
-                        $bayar += $dp->GetTotal();
-                    } ?>
-                    <tr class="bg-secondary text-white">
-                        <td colspan="3">
-                            Total Yang Dibayar
+                    <tr>
+                        <td>
+                            <?= $Peminjaman->GetNamaAnggota() ?>
                         </td>
                         <td>
-                            <?= $bayar ?>
+                            Rp. <?= $Peminjaman->jumlah_pinjam ?>
+                        </td>
+                        <td>
+                            Rp. <?= $Peminjaman->jumlah_cicilan ?>
+                        </td>
+                        <td>
+                            <?= $Peminjaman->tenor ?>
                         </td>
                     </tr>
             </table>

@@ -113,4 +113,8 @@ class Pengajuan_m extends CI_Model
     {
         return $this->StatusAju()->status_pengajuan;
     }
+    public function GetLogPembayaran()
+    {
+        return $this->log_pembayaran->get("pengajuan_id = '" . $this->id_pengajuan . "'");
+    }
 }

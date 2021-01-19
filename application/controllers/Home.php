@@ -125,12 +125,16 @@ class Home extends CI_Controller
     {
         $this->ceklogin();
         $data['UserLogin'] = $this->getdatalogin();
-        $id = $_GET['id'];
-        $barang = $this->barang->get("kategori_id = '$id'");
+        if (!isset($_GET['id'])) {
+            $barang = $this->barang->get();
+        } else {
+            $id = $_GET['id'];
+            $barang = $this->barang->get("kategori_id = '$id'");
+            $data['Kategori'] = $this->kategori->get_one("id_kategori = '$id'");
+        }
         $data['Barang'] = $barang;
         $data['Keranjang'] = $this->pembelian->get("anggota_id = '" . $data['UserLogin']->id_anggota . "' AND status_beli_id = 1");
         $data['KategoriList'] = $this->kategori->get();
-        $data['Kategori'] = $this->kategori->get_one("id_kategori = '$id'");
         $this->load->view('home/produk', $data);
     }
     public function produk_detail()
@@ -196,5 +200,36 @@ class Home extends CI_Controller
         $pembelian = $this->pembelian->get_one("id_pembelian = '$id'");
         $data['Pembelian'] = $pembelian;
         $this->load->view("home/kuitansi", $data);
+    }
+    public function peminjaman()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        $data['Peminjaman'] = $this->pengajuan->get("anggota_id = '" . $data['UserLogin']->id_anggota . "'");
+        $this->load->view("home/peminjaman", $data);
+    }
+    public function dopeminjaman()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        $newpeminjaman = new Pengajuan_m();
+        $data1['anggota_id'] = $data['UserLogin']->id_anggota;
+        $data1['stat_pengajuan_id'] = 1;
+        $data1['jumlah_pinjam'] = $_POST['jumlah_pinjam'];
+        $data1['tenor'] = $_POST['tenor'];
+        $data1['jumlah_cicilan'] = $_POST['jumlah_pinjam'] / $_POST['tenor'];
+        $newpeminjaman->update($data1);
+        $newpeminjaman->write();
+        $this->writemsg("Pengajuan Berhasil", 1);
+        redirect("Home/kuitansipinjam?id=" . $newpeminjaman->id_pengajuan);
+    }
+    public function kuitansipinjam()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        $id = $_GET['id'];
+        $peminjaman = $this->pengajuan->get_one("id_pengajuan = '$id'");
+        $data['Peminjaman'] = $peminjaman;
+        $this->load->view("home/kuitansipinjam", $data);
     }
 }

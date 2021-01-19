@@ -1,4 +1,3 @@
-`
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +27,9 @@
 
 
 <body id="page-top">
-    <?= $this->session->flashdata('msg') ?>
+
+    <?= $this->session->flashdata("msg") ?>
+
     <!-- Navigation -->
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark" id="mainNav">
         <div class="container">
@@ -42,18 +43,11 @@
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="<?= base_url('Home/user') ?>">Home</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">
-                            Products <span class="caret"></span></a>
-                        <ul class="dropdown-menu bg-dark" style="width: 350px">
-                            <?php foreach ($KategoriList as $kl) { ?>
-                                <li class="nav-link"><a href="<?= base_url() ?>Home/produk?id=<?= $kl->id_kategori ?>"><?= $kl->nama_kategori ?></a>
-                                </li>
-                            <?php } ?>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#peminjaman">Peminjaman</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#KeranjangModal"><i class="fa fa-shopping-cart"></i> Keranjang</a>
+                        <a class="nav-link js-scroll-trigger" href="#track">Trackrecord Peminjaman</a>
                     </li>
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -92,47 +86,111 @@
         </div>
     </div>
 
-    <!-- Portfolio Grid -->
-    <section class="bg-light page-section" id="portfolio">
+    <!-- Peminjaman -->
+    <section class="bg-light page-section" id="peminjaman">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <hr>
-                    <?php if (!isset($Kategori)) { ?>
-                        <h2 class="section-heading text-uppercase">Semua Barang Kami</h2>
-                    <?php } else { ?>
-                        <h2 class="section-heading text-uppercase"><?= $Kategori->nama_kategori ?></h2>
-                    <?php } ?>
-                    <h3 class="section-subheading text-muted">Produk-produk yang kami sediakan</h3>
+                    <h2 class="section-heading text-uppercase">Peminjaman</h2>
+                    <h3 class="section-subheading text-muted">Peminjaman Uang</h3>
                 </div>
             </div>
-            <div class="row">
-                <?php foreach ($Barang as $b) { ?>
-                    <div class="col-md-3 col-sm-6 portfolio-item">
-                        <a class="portfolio-link" href="<?= base_url() ?>Home/produk_detail?id=<?= $b->id_barang ?>">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content">
-                                    <i class="fas fa-shopping-cart fa-3x"></i>
+        </div>
+        <div class="container">
+
+            <div class="card o-hidden border-0 shadow-lg my-1">
+                <div class="card-body p-2">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <!-- <div class="col-lg-5 d-none d-lg-block bg-register-image"></div> -->
+                        <div class="col-lg-12">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Peminjaman</h1>
                                 </div>
+                                <form action="<?= base_url() ?>Home/dopeminjaman" method="POST">
+                                    <div class="form-group row">
+                                        <div class="col-sm-12 mb-3 mb-sm-0">
+                                            <input type="number" name="jumlah_pinjam" class="form-control form-control-user" max="1000000" placeholder="Masukkan Nominal (max 1 juta)">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12 mb-3 mb-sm-0">
+                                            <input type="number" name="tenor" class="form-control form-control-user" placeholder="Jangka Pinjam" min="3" max="24">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-success text-white" type="submit">Ajukan Peminjaman</button>
+                                    </div>
+                                </form>
+                                <hr>
                             </div>
-                            <img class="img-fluid" src="<?= $b->image ?>" alt="">
-                        </a>
-                        <div class="portfolio-caption">
-                            <a href="<?= base_url() ?>Home/produk_detail?id=<?= $b->id_barang ?>" class="text text-dark">
-                                <h6><?= $b->nama_barang ?></h6>
-                            </a>
-                            <b class="text-muted">Rp. <?= $b->harga_jual ?>
-                                <br><i>stock(<?= $b->stock ?>)</i></b>
                         </div>
                     </div>
-                <?php } ?>
+                </div>
             </div>
-
         </div>
     </section>
+
     <!-- About -->
+    <section class="bg-light page-section" id="track">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <hr>
+                    <h2 class="section-heading text-uppercase">Trackrecord Peminjaman</h2>
+                    <h3 class="section-subheading text-muted">Trackrecord Peminjaman Uang</h3>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid col-lg-10">
+            <!-- Page Heading -->
+            <h1 class="h3 mb-2 text-gray-800">Trackrecord Pembayaran</h1>
+            <p class="mb-2">Berikut adalah trackrecord pembayaran peminjaman uang anda.</p>
 
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-2">
+                    <h6 class="m-0 font-weight-bold text-dark"><?= $UserLogin->nama_anggota ?></h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <?php
+                            $i = 0;
+                            foreach ($Peminjaman as $pem) {
+                                $i++
+                            ?>
+                                <tr>
+                                    <th>Pengajuan</th>
+                                    <th>Tanggal Bayar</th>
+                                    <th>Angsuran</th>
+                                    <th>Keterangan</th>
+                                </tr>
+                                <?php foreach ($pem->GetLogPembayaran() as $glp) { ?>
+                                    <tr>
+                                        <td><?= $i ?></td>
+                                        <td>
+                                            <?= $glp->tanggal_bayar ?>
+                                        </td>
+                                        <td>
+                                            <?= $pem->jumlah_cicilan ?>
+                                        </td>
+                                        <td>
+                                            <?= $glp->GetStatusBayar() ?>
+                                        </td>
+                                    </tr>
+                            <?php }
+                            } ?>
+                            <!-- looping space -->
 
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -174,69 +232,7 @@
     </footer>
 
     <!-- Portfolio Modals -->
-    <div class="modal fade" id="KeranjangModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Keranjang Anda</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>
-                                    Nama Barang
-                                </th>
-                                <th>
-                                    Harga
-                                </th>
-                                <th>
-                                    Jumlah Item
-                                </th>
-                                <th>
-                                    Total Harus dibayar
-                                </th>
-                                <th>
-                                    Delete
-                                </th>
-                            </tr>
 
-                            <?php
-                            $bayar = 0;
-                            foreach ($Keranjang as $k) {
-                                foreach ($k->DetailPembelian() as $dp) { ?>
-                                    <tr>
-                                        <td>
-                                            <?= $dp->GetNamaBarang() ?>
-                                        </td>
-                                        <td>
-                                            <?= $dp->GetHargaJual() ?>
-                                        </td>
-                                        <td>
-                                            <?= $dp->jumlah_beli ?>
-                                        </td>
-                                        <td>
-                                            Rp. <?= $dp->GetTotal() ?>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-danger text-white" href="<?= base_url() ?>Home/delete_item?id=<?= $dp->id_det_pembelian ?>">Delete</a>
-                                        </td>
-                                    </tr>
-                            <?php
-                                }
-                            } ?>
-                    </table>
-                    <br>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
     <!-- Bootstrap core JavaScript -->
