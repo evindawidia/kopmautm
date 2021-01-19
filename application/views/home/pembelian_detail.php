@@ -149,7 +149,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        <input type="number" class="form-control form" name="jumlah_beli" value="1" placeholder="1-99" min="1" max="99">
+                                        <input type="number" class="form-control form" name="jumlah_beli" value="1" placeholder="1" min="1" max="<?= $Barang->stock ?>">
                                     </th>
                                     <td>
                                         <button type="submit" class="btn btn-info">Masukan Ke Keranjang</button>

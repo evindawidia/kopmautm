@@ -186,7 +186,7 @@ class Admin extends CI_Controller
     {
         $this->ceklogin();
         $data['UserLogin'] = $this->getdatalogin();
-        $data['Pembelian'] = $this->pembelian->get();
+        $data['Pembelian'] = $this->pembelian->get("", "", "id_pembelian DESC");
         $data['Anggota'] = $this->anggota->get();
         $data['Detail_Beli'] = $this->detail_pembelian->get();
         $this->load->view('admin/header', $data);
@@ -269,7 +269,7 @@ class Admin extends CI_Controller
     {
         $this->ceklogin();
         $data['UserLogin'] = $this->getdatalogin();
-        $data['Peminjaman'] = $this->pengajuan->get();
+        $data['Peminjaman'] = $this->pengajuan->get("", "", "id_pengajuan DESC");
         $this->load->view('admin/header', $data);
         $this->load->view('admin/peminjaman', $data);
         $this->load->view('admin/footer', $data);
