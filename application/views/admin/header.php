@@ -40,17 +40,34 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-
             <!-- Divider -->
             <hr class="sidebar-divider">
+            <?php if ($UserLogin->level_id == 1) { ?>
+                <!-- Nav Item - Data Anggota -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="<?= base_url('Admin/anggota') ?>">
+                        <i class="fas fa-users"></i>
+                        <span>Data Anggota</span>
+                    </a>
+                </li>
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+                <!-- Nav Item - Data Barang -->
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('Admin/barang') ?>">
+                        <i class="fas fa-address-book"></i>
+                        <span>Data Barang</span></a>
+                </li>
+                <!-- Divider -->
+                <hr class="sidebar-divider">
 
-            <!-- Nav Item - Data Anggota -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="<?= base_url('Admin/anggota') ?>">
-                    <i class="fas fa-users"></i>
-                    <span>Data Anggota</span>
-                </a>
-            </li>
+                <!-- Nav Item - Data Supplier -->
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('Admin/supplier') ?>">
+                        <i class="fas fa-user"></i>
+                        <span>Data Supplier</span></a>
+                </li>
+            <?php } ?>
 
             <!-- Nav Item - Data Pembelian -->
             <li class="nav-item">
@@ -61,30 +78,11 @@
 
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
             <!-- Nav Item - Data Peminjaman -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('Admin/peminjaman') ?>">
                     <i class="fas fa-dollar-sign"></i>
                     <span>Data Peminjaman</span></a>
-            </li>
-
-            <!-- Nav Item - Data Barang -->
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('Admin/barang') ?>">
-                    <i class="fas fa-address-book"></i>
-                    <span>Data Barang</span></a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Nav Item - Data Supplier -->
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('Admin/supplier') ?>">
-                    <i class="fas fa-user"></i>
-                    <span>Data Supplier</span></a>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -139,7 +137,7 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $UserLogin->nama_anggota ?></span>
 
                             </a>
                             <!-- Dropdown - User Information -->

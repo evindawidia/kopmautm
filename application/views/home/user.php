@@ -45,7 +45,7 @@
                             Products <span class="caret"></span></a>
                         <ul class="dropdown-menu bg-dark" style="width: 350px">
                             <?php foreach ($Kategori as $k) { ?>
-                                <li class="nav-link"><a href="#"><?= $k->nama_kategori ?></a></li>
+                                <li class="nav-link"><a href="<?= base_url() ?>Home/produk?id=<?= $k->id_kategori ?>"><?= $k->nama_kategori ?></a></li>
                             <?php } ?>
                         </ul>
                     </li>
@@ -60,7 +60,7 @@
                     </li>
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Anggota</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $UserLogin->nama_anggota ?></span>
 
                         </a>
                         <!-- Dropdown - User Information -->
@@ -152,7 +152,7 @@
             <div class="row">
                 <?php foreach ($Kategori as $k) { ?>
                     <div class="col-md-4 col-sm-6 portfolio-item">
-                        <a class="portfolio-link" href="#">
+                        <a class="portfolio-link" href="<?= base_url() ?>Home/produk?id=<?= $k->id_kategori ?>">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content">
                                     <i class="fas fa-shopping-cart fa-3x"></i>

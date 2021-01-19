@@ -5,7 +5,6 @@ class Detail_pembelian_m extends CI_Model
 {
     private $table = "detail_pembelian";
     public $id_det_pembelian = "";
-    public $status_beli_id = "";
     public $pembelian_id = "";
     public $barang_id = "";
     public $jumlah_beli = "";
@@ -15,7 +14,6 @@ class Detail_pembelian_m extends CI_Model
     {
         $detail_pembelian = new Detail_pembelian_m();
         $detail_pembelian->id_det_pembelian = $object->id_det_pembelian;
-        $detail_pembelian->status_beli_id = $object->status_beli_id;
         $detail_pembelian->pembelian_id = $object->pembelian_id;
         $detail_pembelian->barang_id = $object->barang_id;
         $detail_pembelian->jumlah_beli = $object->jumlah_beli;
@@ -31,7 +29,6 @@ class Detail_pembelian_m extends CI_Model
             return null;
         }
         $this->id_det_pembelian = $data->id_det_pembelian;
-        $this->status_beli_id = $data->status_beli_id;
         $this->pembelian_id = $data->pembelian_id;
         $this->barang_id = $data->barang_id;
         $this->jumlah_beli = $data->jumlah_beli;
@@ -66,7 +63,6 @@ class Detail_pembelian_m extends CI_Model
     public function update($data)
     {
         $this->id_det_pembelian = isset($data['id_det_pembelian']) ? $data['id_det_pembelian'] : $this->id_det_pembelian;
-        $this->status_beli_id = isset($data['status_beli_id']) ? $data['status_beli_id'] : $this->status_beli_id;
         $this->pembelian_id = isset($data['pembelian_id']) ? $data['pembelian_id'] : $this->pembelian_id;
         $this->barang_id = isset($data['barang_id']) ? $data['barang_id'] : $this->barang_id;
         $this->jumlah_beli = isset($data['jumlah_beli']) ? $data['jumlah_beli'] : $this->jumlah_beli;
@@ -93,17 +89,13 @@ class Detail_pembelian_m extends CI_Model
         $this->db->delete('detail_pembelian', array('id_det_pembelian' => $this->id_det_pembelian));
         return true;
     }
-    public function StatusBeli()
-    {
-        return $this->status_beli->get_one("id_status_beli = '" . $this->status_beli_id . "'");
-    }
-    public function GetStatusBeli()
-    {
-        return $this->StatusBeli()->status_beli;
-    }
     public function Barang()
     {
         return $this->barang->get_one("id_barang = '" . $this->barang_id . "'");
+    }
+    public function GetHargaJual()
+    {
+        return $this->Barang()->harga_jual;
     }
     public function GetNamaBarang()
     {
@@ -112,5 +104,10 @@ class Detail_pembelian_m extends CI_Model
     public function GetTotal()
     {
         return $this->jumlah_beli * $this->Barang()->harga_jual;
+    }
+    public function GetPembelian()
+    {
+        $pembelian = $this->pembelian->get_one("id_pembelian = '" . $this->pembelian_id . "'");
+        return $pembelian;
     }
 }

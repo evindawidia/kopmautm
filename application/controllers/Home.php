@@ -4,6 +4,7 @@ class Home extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->library('user_agent');
         $this->load->helper('form');
         $this->load->model("Anggota_m", "anggota");
         $this->load->model("Barang_m", "barang");
@@ -77,7 +78,7 @@ class Home extends CI_Controller
             $_SESSION['user'] = $anggota->id_anggota;
             if ($anggota->level_id == 3) {
                 redirect("Home/user");
-            } elseif ($anggota->level_id == 1) {
+            } elseif ($anggota->level_id == 1 || $anggota->level_id == 2) {
                 redirect("Admin/user");
             }
         } else {
@@ -119,5 +120,81 @@ class Home extends CI_Controller
         $data['UserLogin'] = $this->getdatalogin();
         $data['Kategori'] = $this->kategori->get();
         $this->load->view('home/user', $data);
+    }
+    public function produk()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        $id = $_GET['id'];
+        $barang = $this->barang->get("kategori_id = '$id'");
+        $data['Barang'] = $barang;
+        $data['Keranjang'] = $this->pembelian->get("anggota_id = '" . $data['UserLogin']->id_anggota . "' AND status_beli_id = 1");
+        $data['KategoriList'] = $this->kategori->get();
+        $data['Kategori'] = $this->kategori->get_one("id_kategori = '$id'");
+        $this->load->view('home/produk', $data);
+    }
+    public function produk_detail()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        $id = $_GET['id'];
+        $barang = $this->barang->get_one("id_barang = '$id'");
+        $data['Barang'] = $barang;
+        $data['KategoriList'] = $this->kategori->get();
+        $data['Keranjang'] = $this->pembelian->get("anggota_id = '" . $data['UserLogin']->id_anggota . "' AND status_beli_id = 1");
+        $this->load->view('home/pembelian_detail', $data);
+    }
+    public function tambah_keranjang()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        $newpembelian = new pembelian_m();
+        if ($pembelian = $this->pembelian->get("anggota_id = '" . $data['UserLogin']->id_anggota . "' AND status_beli_id = 1", "", "id_pembelian DESC", "1")) {
+            $newpembelian = $pembelian[0];
+        } else {
+            $newpembelian->update([
+                "anggota_id" => $data['UserLogin']->id_anggota,
+                "status_beli_id" => 1
+            ]);
+            $newpembelian->write();
+        }
+        $newdetail_pembelian = new detail_pembelian_m();
+        $data1['jumlah_beli'] = $_POST['jumlah_beli'];
+        $data1['barang_id'] = $_GET['id'];
+        $data1['status_beli_id'] = 1;
+        $data1['pembelian_id'] = $newpembelian->id_pembelian;
+        $newdetail_pembelian->update($data1);
+        $newdetail_pembelian->write();
+        $this->writemsg("Berhasil Ditambahkan ke Keranjang", 1);
+        redirect("Home/produk_detail?id=" . $_GET['id']);
+    }
+    public function delete_item()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        $id = $_GET['id'];
+        $keranjang = $this->detail_pembelian->get_one("id_det_pembelian = '$id'");
+        $keranjang->delete();
+        $this->writemsg("Delete Success", 1);
+        redirect($_SERVER['HTTP_REFERER']); //kembali ke alamat yg melakukan request
+    }
+    public function checkout()
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        $id = $_GET['id'];
+        $pembelian = $this->pembelian->get_one("id_pembelian = '$id'");
+        $pembelian->status_beli_id = 2;
+        $pembelian->write();
+        $this->writemsg("Berhasil Checkout", 1);
+        redirect("Home/kuitansi/$id");
+    }
+    public function kuitansi($id)
+    {
+        $this->ceklogin();
+        $data['UserLogin'] = $this->getdatalogin();
+        $pembelian = $this->pembelian->get_one("id_pembelian = '$id'");
+        $data['Pembelian'] = $pembelian;
+        $this->load->view("home/kuitansi", $data);
     }
 }

@@ -24,7 +24,7 @@
                             <tr>
                                 <td><?= $d->id_det_pembelian ?></td>
                                 <td><?= $d->date_created ?></td>
-                                <td><?= $d->GetStatusBeli() ?></td>
+                                <td><?= $d->GetPembelian()->GetStatusBeli() ?></td>
                                 <td><?= $d->GetNamaBarang() ?></td>
                                 <td><?= $d->jumlah_beli ?></td>
                                 <td><?= $d->GetTotal() ?></td>
