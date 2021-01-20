@@ -111,6 +111,9 @@ class Admin extends CI_Controller
     {
         $this->ceklogin();
         $data['UserLogin'] = $this->getdatalogin();
+        echo "<pre>";
+        var_dump($data['UserLogin']);
+        die();
         if (!isset($_GET['id'])) {
             $this->writemsg("Data not found !!", 2);
             redirect("Admin/anggota");
